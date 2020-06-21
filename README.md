@@ -206,6 +206,13 @@ There are three main directories in the `ui-react/src/` folder:
 
 ***
 
+## Windows Service Configuration
+
+* this file is the main code of the service.
+you can create an empty Windows Service project in Visual Studio, then copy and paste the file C#_EWS_Monitor.cs to your project
+
+***
+
 ## Flightboard Layout Mockup
 
 ![Mockup 3](MeetEasier_offline/mockups/mockup-3.jpg)
