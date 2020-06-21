@@ -1,0 +1,45 @@
+USE [ews]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Lemontea1990>
+-- Create date: <3/17/2019 11:33:00>
+-- Description:	<Description,, update the table meeting_status when this table insert finished>
+-- =============================================
+ALTER   TRIGGER [dbo].[Meeting_Update_Finished] 
+   ON [ews].[dbo].[Meeting_Status_Loop] 
+   AFTER update
+AS 
+BEGIN
+
+	SET NOCOUNT ON;
+
+
+		
+		delete from Meeting_Status;
+
+		delete from Meeting_Status_Loop where Room_Name = 'end'
+
+		SET IDENTITY_INSERT Meeting_Status on
+
+		insert into Meeting_Status([id]
+      ,[Room_Name]
+      ,[Start_Time]
+      ,[End_Time]
+      ,[Organzier]
+      ,[Location]
+      ,[timestamp]
+      ,[Subject]
+      ,[Opt_att]
+      ,[Req_att]) select * from Meeting_Status_Loop;
+
+	  SET IDENTITY_INSERT Meeting_Status off
+
+
+
+
+END
