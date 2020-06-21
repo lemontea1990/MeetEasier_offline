@@ -8,7 +8,11 @@ Why pay money for something you can do yourself?
 ## Description
 
 MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365. but this project works offline Office 365.
-That means you can use your local data from Sqlserver or Mysql anwhere which Node supported 
+That means you can use your local data from Sqlserver or Mysql anywhere which Node supported 
+
+***if you still want to use the O365 data, but failed with fisher's original version, 
+you can run a windows service to collect the data first and put it into your local DB
+
 
 ![Mockup 1](MeetEasier_offline/mockups/mockup-1.jpg)
 
