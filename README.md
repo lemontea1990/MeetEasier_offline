@@ -189,6 +189,8 @@ There are three main directories in the `ui-react/src/` folder:
   a new windows service named "MeetEasier" was created.
   you can also find the service was running in Service management window
 
+### Uninstall Service
+
 * if you want to stop the service, you have to uninstall winService first with the same requirment of installation:
 
   ```javascript
