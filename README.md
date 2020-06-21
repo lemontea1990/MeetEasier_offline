@@ -175,6 +175,28 @@ There are three main directories in the `ui-react/src/` folder:
 
 ***
 
+***
+## Run on Windows Servier as WinService
+
+### Install Service 
+
+* run below scripts in Administrator mode CMD window and CD to the file exists folder 
+  ```javascript
+    node win_service_meet_easier.js
+  ```
+
+  after this script successfully executed, you will find a new folder named "Daemon" was created.
+  a new windows service named "MeetEasier" was created.
+  you can also find the service was running in Service management window
+
+* if you want to stop the service, you have to uninstall winService first with the same requirment of installation:
+
+  ```javascript
+    node uninstall_service.js
+  ```
+
+***
+
 ## Flightboard Layout Mockup
 
 ![Mockup 3](MeetEasier_offline/mockups/mockup-3.jpg)
