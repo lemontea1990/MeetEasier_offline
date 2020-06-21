@@ -1,10 +1,11 @@
 # MeetEasier
 
-Because why pay money for something you can do yourself?
+Why pay money for something you can do yourself?
 
 ## Description
 
-MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365.
+MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365. but this project works offline Office 365.
+That means you can use your local data from Sqlserver or Mysql anwhere which Node supported 
 
 ![Mockup 1](mockups/mockup-1.jpg)
 
@@ -20,31 +21,6 @@ In the event of wanting to commercially distribute a closed source modification 
 
 ## Updates
 
-* v0.3.4
-  * [#34](https://github.com/danxfisher/MeetEasier/pull/34) - bug fix for 'Next up:' displaying incorrectly
-* v0.3.3
-  * [#18](https://github.com/danxfisher/MeetEasier/pull/15) - use localized sort for rooms
-* v0.3.2
-  * Added additional error handling for incorrect credentials.  The error will now be shown on the front end.
-  * Updated the socket component to stop most ERR_CONNECTION_REFSUED errors from happening.
-* v0.3.1
-  * Removed skipped rooms/room blacklist filtering from front end and added to back end.
-* v0.3
-  * Cleaned up unnecessarily nested component folder structure
-  * [#8](https://github.com/danxfisher/MeetEasier/pull/8) - add script-shortcuts to `package.json` in root
-  * [#9](https://github.com/danxfisher/MeetEasier/pull/9) - support environment-variables for authentication and port configuration
-  * [#10](https://github.com/danxfisher/MeetEasier/pull/10) - create shrinkwraps for npm-dependencies
-  * [#11](https://github.com/danxfisher/MeetEasier/pull/11) - add `.editorconfig`
-  * [#12](https://github.com/danxfisher/MeetEasier/pull/12) - pass error (while fetching appointments), to frontend
-  * [#13](https://github.com/danxfisher/MeetEasier/pull/13) - set engine-requirements
-  * [#14](https://github.com/danxfisher/MeetEasier/pull/14) - add heartbeat-endpoint, to check if server is alive (for monitoring)
-  * [#15](https://github.com/danxfisher/MeetEasier/pull/15) - add '.nvmrc'
-* v0.2
-  * Changed domain to accept more than just ".com" extension
-  * Changed `ui-react/config/flightboard.config.js` to handle all text so that the application can be multilingual
-  * Added `ui-react/config/singleRoom.config.js` to do the same for the `single-room` component
-  * Added `console.log` to `server.js` to know when the server is running correctly
-  * Updated styles slightly
 * v0.1
   * Initial release
 
@@ -54,10 +30,7 @@ In the event of wanting to commercially distribute a closed source modification 
 
 This application assumes you have:
 
-* Exchange Online (Office 365)
-* Conference room mailboxes organized in room lists
-* Exchange Web Services (EWS) enabled
-* A service account with access to all conference room mailboxes and EWS
+* Data source 
 * A web server with Node.js installed to run the application
 
 **Please Note:** This application uses Basic Authentication which, by its very nature, is insecure.  I would strongly suggest using SSL where ever you decide to run this.
@@ -144,37 +117,19 @@ There are three main directories in the `ui-react/src/` folder:
 
 ### Simple
 
-* In `/config/auth.js`, enter your credentials and domain:
+* In `/app/ews/roomlist.js` and `/app/ews/rooms.js`, enter your credentials and domain:
 
     ```javascript
-    module.exports = {
-      // this user MUST have full access to all the room accounts
-      'exchange' : {
-        'username'  : 'SVCACCT_EMAIL@DOMAIN.COM',
-        'password'  : 'PASSWORD',
-        'uri'       : 'https://outlook.office365.com/EWS/Exchange.asmx'
-      },
-      'domain' : 'DOMAIN'
-    };
+    var config = {
+      userName: 'name', // username of DB
+      password: 'pwd', // PWD of DB
+      server: 'server addres', // server address
+      options: {
+        database: 'db name' 
+      }
+    }
     ```
 
-* Alternatively, username, password and domain can be set as environment variable
-
-    ```bash
-    export USERNAME=svcacct_email@domain.com
-    export PASSWORD=password
-    export DOMAIN=domain.com
-    ```
-
-* In `/config/room-blacklist.js`, add any room by email to exclude it from the list of rooms:
-
-    ```javascript
-      module.exports = {
-        'roomEmails' : [
-          'ROOM_EMAIL@DOMAIN.com'
-        ]
-      };
-    ```
 
 * In `/ui-react/src/config/flightboard.config.js`, manage your customizations:
 
@@ -203,7 +158,7 @@ There are three main directories in the `ui-react/src/` folder:
 ### Advanced
 
 * All EWS functionality is located in `app/ews`.
-* To change the interval in which the web socket emits, edit the interval time in `app/socket-controller.js`.  By default, it is set to 1 minute.
+* To change the interval in which the web socket emits, edit the interval time in `app/socket-controller.js`.  By default, it is set to 10 seconds.
 * To update styles, make sure you install grunt first with `npm install -g grunt-cli`.  Then run `grunt` in the root directory to watch for SCSS changes.  Use the `.scss` files located in the `/scss` folder.
   * All React components can be locally styled by adding a new `.css` file and importing it into the component itself if you'd prefer to do it that way.
 * In `app/ews/rooms.js`, there is a block of code that may not be necessary but were added as a convenience.  Feel free to use it, comment it out, or remove it completely.  It was designed for a use case where the email addresses (ex: jsmith@domain.com) do not match the corporate domain (ex: jsmith-enterprise).
@@ -229,7 +184,7 @@ There are three main directories in the `ui-react/src/` folder:
 
 ## Resources & Attributions
 
-* [ews-javascript-api](https://github.com/gautamsi/ews-javascript-api)
+* Original Version of MeetEasier(https://github.com/danxfisher/MeetEasier)
 * Mockup Images:
   * https://www.anthonyboyd.graphics/mockups/2017/realistic-ipad-pro-mockup-vol-3/
   * https://www.freepik.com/free-psd/business-meeting-with-tv-mockup_1163371.htm
