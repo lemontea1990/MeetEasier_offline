@@ -10,7 +10,7 @@ Why pay money for something you can do yourself?
 MeetEasier is a web application that visualizes meeting room availability.  It works using Exchange Web Services (EWS) with Exchange room lists in Office 365. but this project works offline Office 365.
 That means you can use your local data from Sqlserver or Mysql anwhere which Node supported 
 
-![Mockup 1](mockups/mockup-1.jpg)
+![Mockup 1](MeetEasier_offline/mockups/mockup-1.jpg)
 
 ***
 
@@ -177,11 +177,11 @@ There are three main directories in the `ui-react/src/` folder:
 
 ## Flightboard Layout Mockup
 
-![Mockup 3](mockups/mockup-3.jpg)
+![Mockup 3](MeetEasier_offline/mockups/mockup-3.jpg)
 
 ## Single Room Layout Mockup
 
-![Mockup 2](mockups/mockup-2.jpg)
+![Mockup 2](MeetEasier_offline/mockups/mockup-2.jpg)
 
 ***
 
