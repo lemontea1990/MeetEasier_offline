@@ -18,7 +18,7 @@
     "grunt-contrib-sass": "1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "node-windows": "^0.1.14",
-    "socket.io": "1.7.4"
+    "socket.io": "2.4.0"
   },
   "devDependencies": {}
 }
